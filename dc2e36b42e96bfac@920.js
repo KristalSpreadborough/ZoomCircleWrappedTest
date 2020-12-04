@@ -9,7 +9,7 @@ The area of each leaf circle in a circle-packing diagram is proportional its val
 )});
   main.variable(observer("chart")).define("chart", ["pack","d3","DOM","textRadius","lines","words","format"], function(pack,d3,DOM,textRadius,lines,words,format)
 {
-  
+
   const PROC = "#F9B6B6"; //red
   const DISO = "#F9DCB6"; //orange
   const FIND = "#B6DAF9"; //blue
@@ -17,54 +17,50 @@ The area of each leaf circle in a circle-packing diagram is proportional its val
   const ACTI = "#E5E826"; //yellow-green
   const DRUG = "#DFB6F9"; //purple
   const CHEM_DRUG = "#DFB6F9"; //purple
-  
+
   const derm = "#FFF9EC"; // light orange
   const cardio = "#FFE6DF"; // light red
   const gih = "#EBFFF1"; // light green
-  
-  const title = "GIH — U"; 
-  
+
+  const title = "GIH — U";
+
   var data={
  "name": "flare", "mycolor": gih, "stroke": "#727272",
      "children": [
-
-{"name": "says hes ted alad flaadsfgkj fla; gkj   ", "value": 47, "mycolor": DISO},
-{"name": "scheduled", "value": 30, "mycolor": PROC},
-{"name": "appearance", "value": 29, "mycolor": FIND},
-{"name": "hope", "value": 26, "mycolor": FIND},
-{"name": "procedure", "value": 24, "mycolor": PROC},
-{"name": "procedure", "value": 24, "mycolor": FIND},
-{"name": "surgery", "value": 23, "mycolor": PROC},
-{"name": "problem", "value": 22, "mycolor": FIND},
-{"name": "colonoscopy", "value": 20, "mycolor": PROC},
-{"name": "spoke", "value": 19, "mycolor": FIND},
-{"name": "says hes ted alad flaadsfgkj fla; gkj   ", "value": 18, "mycolor": FIND},
-{"name": "drinks", "value": 18, "mycolor": FIND},
-{"name": "hearing", "value": 17, "mycolor": PROC},
-{"name": "hearing", "value": 17, "mycolor": FIND},
-{"name": "liver", "value": 17, "mycolor": DISO},
-{"name": "liver", "value": 16, "mycolor": FIND},
-{"name": "worsening", "value": 16, "mycolor": FIND},
-{"name": "symptoms", "value": 16, "mycolor": FIND},
-{"name": "drinks", "value": 16, "mycolor": DISO},
-{"name": "tests", "value": 16, "mycolor": FIND},
-{"name": "mri scan", "value": 15, "mycolor": PROC},
-{"name": "test results", "value": 15, "mycolor": FIND},
-{"name": "liver", "value": 14, "mycolor": CHEM_DRUG},
-{"name": "liver", "value": 14, "mycolor": ANAT},
-{"name": "liver", "value": 14, "mycolor": PROC},
-{"name": "brain mri", "value": 14, "mycolor": PROC},
-//{"name": "migraine headaches", "value": 14, "mycolor": DISO},
-{"name": "migraine headaches and more headaches and more headaches and more headaches and more headaches and more headaches and more!", "value": 14, "mycolor": DISO},
-{"name": "crohn", "value": 14, "mycolor": DISO},
-{"name": "performed", "value": 13, "mycolor": DRUG},
-{"name": "says hes ted aladcolonoscopycolonoscopy flaadsfgkj fla; gkj   ", "value": 13, "mycolor": FIND},
-   
-    
+       {
+        "name": "Groups",
+        "children": [
+         {"name": "Melbourne Data Analytics Platform (MDAP): A team of Research Data Specialists and Research Data Stewards working to enable data-intensive research across the disciplines, as part of the University’s Petascale Campus Initiative.", "value": 1082},
+         {"name": "Social and Cultural Informatics Platform: Embedded within the Humanities, Arts and Social Science faculties; provides specialist support with digital research methods and project delivery.", "value": 1336}
+        ]
+       },
+       {
+        "name": "Platforms",
+        "children": [
+         {"name": "Figshare: A repository that can be used for publishing and sharing creative and research outputs (except for journal articles/theses). The University has an institutional figshare that all staff can use: https://melbourne.figshare.com/", "value": 1082},
+         {"name": "Omeka: An online gallery platform for showcasing and displaying research outputs. https://gateway.research.unimelb.edu.au/resources/platforms-infrastructure-and-equipment/research-computing-services/services/data-storage-management/omeka", "value": 1336}
+        ]
+       },
+       {
+        "name": "Research Areas",
+        "children": [
+         {"name": "Ecology of Resources: A set of resources (e.g. tools such as Zoom) that you use to interact and communicate with others, including students and colleagues. For more information see: https://doi.org/10.4324/9780203075227.ch3 ", "value": 1082},
+         {"name": "Scholarship of teaching and learning: A systematic approach that uses investigations into student learning to inform educational practice.", "value": 1336},
+         {"name": "Scholarship of technology enhanced learning: SOTL that is specifically applied to TEL practices", "value": 319},
+         {"name": "Technology enhanced learning: When technologies of any kind are used to enhance the learning experience in any way ", "value": 10498},
+         {"name": "Post-digital: Post-digital theory examines how our relationship with digital technologies has changes, and is changing. It emphasised human experience over digital design. Read more here: https://en.wikipedia.org/wiki/Postdigital", "value": 2822}
+        ]
+       },
+       {
+        "name": "Places",
+        "children": [
+         {"name": "Galleries, Libraries, Archives, and Museums (GLAM): Refers to cultural institutions with a mission to provide access to knowledge. For more information see https://en.wikipedia.org/wiki/GLAM_(industry_sector)", "value": 1082}
+        ]
+       }  
      ]
        }
-   
-  
+
+
   const root = pack(data);
 
   const svg = d3.select(DOM.svg(1000, 1000))
@@ -72,8 +68,8 @@ The area of each leaf circle in a circle-packing diagram is proportional its val
       .style("width", "100%")
       .style("height", "auto")
       .attr("text-anchor", "middle");
-      
-      
+
+
   svg.append("text")
       .attr("x", 100)
       .attr("y", 30)    // +20 to adjust position (lower)
@@ -81,8 +77,8 @@ The area of each leaf circle in a circle-packing diagram is proportional its val
       .attr("font-size", "24px")
       .attr("fill",  "#000000")
       .attr("font-weight",function(d,i) {return i*100+700;})
- 
-  
+
+
   const shadow = DOM.uid("shadow");
 
   svg.append("filter")
@@ -100,16 +96,16 @@ The area of each leaf circle in a circle-packing diagram is proportional its val
     .data(d => d.values)
     .join("g")
     .attr("transform", d => `translate(${d.x + 2.5},${d.y + 2.5})`)
-    
+
 
  var circle = node.append("circle")
       .attr("r", d => d.r)
       .attr("fill", d => d.data.mycolor)
       .style("stroke", d => d.data.stroke)
       .attr("stroke-width", 4)
-  
+
   const leaf = node.filter(d => !d.children);
-  
+
   leaf.select("circle")
       .attr("id", d => (d.leafUid = DOM.uid("leaf")).id);
 
@@ -117,12 +113,12 @@ The area of each leaf circle in a circle-packing diagram is proportional its val
       .attr("id", d => (d.clipUid = DOM.uid("clip")).id)
       .append("use")
       .attr("xlink:href", d => d.leafUid.href);
-    
+
   const leafText = leaf.append("text")
-      .attr("transform", (d, i, nodes) => 
+      .attr("transform", (d, i, nodes) =>
                               `translate(${ +d3.select(nodes[i].parentNode).select("circle").attr("cx")},
                                          ${ +d3.select(nodes[i].parentNode).select("circle").attr("cx")})
-                                scale(${ +d3.select(nodes[i].parentNode).select("circle").attr("r") * 0.6 
+                                scale(${ +d3.select(nodes[i].parentNode).select("circle").attr("r") * 0.6
                                          / textRadius(lines(words(d.data.name))) })`
            )
       .selectAll("tspan")
@@ -131,14 +127,14 @@ The area of each leaf circle in a circle-packing diagram is proportional its val
       //.attr("clip-path", d => d.clipUid)
       .attr("x", 0)
       .attr("y", (d, i, nodes) => `${i - nodes.length / 2 + 0.8}em`)
-      .text(d => d.text ); 
-  
+      .text(d => d.text );
+
   node.append("title")
       .text(d => `${d.ancestors().map(d => d.data.name).reverse().join("/")}\n${format(d.value)}`);
-    
+
   return svg.node();
 
-  
+
 }
 );
   main.variable(observer("words")).define("words", function(){return(
