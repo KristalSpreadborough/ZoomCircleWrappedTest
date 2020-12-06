@@ -1,7 +1,7 @@
 export default function define(runtime, observer) {
   const main = runtime.module();
   main.variable(observer()).define(["md"], function(md){return(
-md`# Circle Packing - Text Wrap Example 2 4:24
+md`# Circle Packing - Text Wrap Example 2 4:27
 
 Adapted text wrap technique from: https://observablehq.com/@mbostock/fit-text-to-circle
 
@@ -97,20 +97,26 @@ The area of each leaf circle in a circle-packing diagram is proportional its val
       .attr("dx", 1)
       .attr("dy", 1);
 
-  // var node = svg.selectAll("g")
-    // .data(d3.nest().key(d => d.height).entries(root.descendants()))
-    // .join("g")
-    // .attr("filter", shadow)
-    // .selectAll("g")
-    // .data(d => d.values)
-    // .join("g")
-    // .attr("transform", d => `translate(${d.x + 2.5},${d.y + 2.5})`)
+  var node = svg.selectAll("g")
+    .data(d3.nest().key(d => d.height).entries(root.descendants()))
+    .join("g")
+    .attr("filter", shadow)
+    .selectAll("g")
+    .data(d => d.values)
+    .join("g")
+    .attr("transform", d => `translate(${d.x + 2.5},${d.y + 2.5})`)
+    .join("circle")
+      .attr("fill", d => d.children ? color(d.depth) : "white")
+      .attr("pointer-events", d => !d.children ? "none" : null)
+      .on("mouseover", function() { d3.select(this).attr("stroke", "#000"); })
+      .on("mouseout", function() { d3.select(this).attr("stroke", null); })
+      .on("click", (event, d) => focus !== d && (zoom(event, d), event.stopPropagation()));
 
 
     // const node = svg.append("g")
-    var node = svg.selectAll("g")
-      .selectAll("circle")
-      .data(d3.nest().key(d => d.height).entries(root.descendants()))
+    // var node = svg.selectAll("g")
+      // .selectAll("circle")
+      // .data(d3.nest().key(d => d.height).entries(root.descendants()))
       // .data(root.descendants().slice(1))
       .join("circle")
         .attr("fill", d => d.children ? color(d.depth) : "white")
