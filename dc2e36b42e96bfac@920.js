@@ -1,7 +1,7 @@
 export default function define(runtime, observer) {
   const main = runtime.module();
   main.variable(observer()).define(["md"], function(md){return(
-md`# Circle Packing - Text Wrap Example 2 4:21
+md`# Circle Packing - Text Wrap Example 2 4:24
 
 Adapted text wrap technique from: https://observablehq.com/@mbostock/fit-text-to-circle
 
@@ -107,7 +107,8 @@ The area of each leaf circle in a circle-packing diagram is proportional its val
     // .attr("transform", d => `translate(${d.x + 2.5},${d.y + 2.5})`)
 
 
-    const node = svg.append("g")
+    // const node = svg.append("g")
+    var node = svg.selectAll("g")
       .selectAll("circle")
       .data(d3.nest().key(d => d.height).entries(root.descendants()))
       // .data(root.descendants().slice(1))
