@@ -97,14 +97,25 @@ The area of each leaf circle in a circle-packing diagram is proportional its val
       .attr("dx", 1)
       .attr("dy", 1);
 
-  var node = svg.selectAll("g")
-    .data(d3.nest().key(d => d.height).entries(root.descendants()))
-    .join("g")
-    .attr("filter", shadow)
-    .selectAll("g")
-    .data(d => d.values)
-    .join("g")
-    .attr("transform", d => `translate(${d.x + 2.5},${d.y + 2.5})`)
+  // var node = svg.selectAll("g")
+    // .data(d3.nest().key(d => d.height).entries(root.descendants()))
+    // .join("g")
+    // .attr("filter", shadow)
+    // .selectAll("g")
+    // .data(d => d.values)
+    // .join("g")
+    // .attr("transform", d => `translate(${d.x + 2.5},${d.y + 2.5})`)
+
+
+    const node = svg.append("g")
+      .selectAll("circle")
+      .data(root.descendants().slice(1))
+      .join("circle")
+        .attr("fill", d => d.children ? color(d.depth) : "white")
+        .attr("pointer-events", d => !d.children ? "none" : null)
+        .on("mouseover", function() { d3.select(this).attr("stroke", "#000"); })
+        .on("mouseout", function() { d3.select(this).attr("stroke", null); })
+        .on("click", (event, d) => focus !== d && (zoom(event, d), event.stopPropagation()));
 
 
  var circle = node.append("circle")
