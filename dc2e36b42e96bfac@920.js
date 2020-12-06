@@ -56,7 +56,7 @@ The area of each leaf circle in a circle-packing diagram is proportional its val
         "children": [
          {"name": "Galleries, Libraries, Archives, and Museums (GLAM): Refers to cultural institutions with a mission to provide access to knowledge. For more information see https://en.wikipedia.org/wiki/GLAM_(industry_sector)", "value": 1082}
         ]
-       }  
+       }
      ]
        }
 
@@ -68,6 +68,15 @@ The area of each leaf circle in a circle-packing diagram is proportional its val
       .style("width", "100%")
       .style("height", "auto")
       .attr("text-anchor", "middle");
+
+      //just added this
+  const svg = d3.create("svg")
+      .attr("viewBox", `-${width / 2} -${height / 2} ${width} ${height}`)
+      .style("display", "block")
+      .style("margin", "0 -14px")
+      .style("background", color(0))
+      .style("cursor", "pointer")
+      .on("click", (event) => zoom(event, root));
 
 
   svg.append("text")
